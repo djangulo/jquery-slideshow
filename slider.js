@@ -15,6 +15,7 @@
         pauseonhover: true,
         navigation: true,
         pagination: true,
+        paginationType: 'dots',
         initialslide: 1,
         metric: '%',
         width: '100%',
