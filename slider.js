@@ -228,7 +228,7 @@
           } else {
             _.options.initialslide--
           }
-          _.updateDots(_.options.initialslide)
+          _.updatePagination(_.options.initialslide)
           if (_.options.autoplay === true) {
             _.startSlider()
           }
@@ -250,7 +250,7 @@
           } else {
             _.options.initialslide++
           }
-          _.updateDots(_.options.initialslide)
+          _.updatePagination(_.options.initialslide)
           if (_.options.autoplay === true) {
             _.startSlider()
           }
@@ -259,7 +259,7 @@
     }
   }
 
-  Slider.prototype.updateDots = function (slideNumber) {
+  Slider.prototype.updatePagination = function (slideNumber) {
     var _ = this
 
     if (slideNumber === _.markup.$slides.length) {
