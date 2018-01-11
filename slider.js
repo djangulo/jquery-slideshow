@@ -34,8 +34,8 @@
         $slides: null,
         $btnprev: null,
         $btnnext: null,
-        $dots: [],
-        $dotscontainer: null,
+        $pagElems: [],
+        $paginationContainer: null,
         slidewidth: null
       }
       _.options = $.extend({}, _.defaults, settings)
@@ -104,23 +104,23 @@
     // add slider pagination
     if (_.options.pagination === true) {
       for (var i = 1; i < _.markup.$slides.length; i++) {
-        _.markup.$dots.push("<li class='dot' data-number='" + i + "'></li>")
+        _.markup.$pagElems.push("<li class='dot' data-number='" + i + "'></li>")
       }
       var pagination = ''
 
-      $.each(_.markup.$dots, function () {
+      $.each(_.markup.$pagElems, function () {
         pagination += this
       })
 
       _.markup.$slidercontainer.append("<ul class='pagination-container'>" + pagination + '</ul>')
 
-      _.markup.$dotscontainer = _.markup.$slidercontainer.find('.pagination-container')
+      _.markup.$paginationContainer = _.markup.$slidercontainer.find('.pagination-container')
 
       // set first slide active
-      _.markup.$dotscontainer.children('li').eq(0).addClass('active')
+      _.markup.$paginationContainer.children('li').eq(0).addClass('active')
 
-      // add click event to pagination dots
-      _.markup.$dotscontainer.children('li').on('click', function () {
+      // add click event to pagination elements
+      _.markup.$paginationContainer.children('li').on('click', function () {
         var slideNumber = parseInt($(this).attr('data-number'), 10)
         _.slide(true, '', slideNumber)
       })
@@ -266,8 +266,8 @@
       slideNumber = 1
     }
 
-    _.markup.$dotscontainer.children('li.active').removeClass('active')
-    _.markup.$dotscontainer.find("[data-number='" + slideNumber + "']").addClass('active')
+    _.markup.$paginationContainer.children('li.active').removeClass('active')
+    _.markup.$paginationContainer.find("[data-number='" + slideNumber + "']").addClass('active')
   }
 
   $.fn.slider = function (args) {
