@@ -104,7 +104,14 @@
     // add slider pagination
     if (_.options.pagination === true) {
       for (var i = 1; i < _.markup.$slides.length; i++) {
-        _.markup.$pagElems.push("<li class='dot' data-number='" + i + "'></li>")
+        if (_.options.paginationType === 'dots') {
+          _.markup.$pagElems.push("<li class='dot' data-number='" + i + "'></li>");
+        } else if(_.options.paginationType === 'thumbnails') {
+          var thumbMarkup = "<li class='thumbnail' data-number='" + i + "'>"
+          thumbMarkup += "<img src='" + $(_.markup.$slides.children('img')[i-1]).attr('src') + "' alt='" + $(_.markup.$slides.children('img')[i-1]).attr('alt') + "-thumbnail' />"
+          thumbMarkup += "</li>"
+          _.markup.$pagElems.push(thumbMarkup);  // changed $dots -> $paginatorEls
+        }
       }
       var pagination = ''
 
